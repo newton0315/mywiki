@@ -1,0 +1,27 @@
+name: Docker build
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    #container:
+    #  image: alpine:3.12
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@master
+    - name: Display build env.
+      run: printenv
+    - name: Docker build
+      run: |
+        pwd
+        #pip3 install -r requirements.txt
+        docker-compose build db
+        docker-compose build wiki
+    #- name: Docker tagging
+    #  run: |
+    #    docker tag mysql-wiki:0.3
+    #    docker tag wiki:0.3
+         
